@@ -296,6 +296,8 @@ MonoBehaviour:
   beat: 0
   noteIterator: 0
   totalNotes: 0
+  noteSpeed: 40
+  offset: 0
   tapNotePrefab: {fileID: 1259918869078981945, guid: 9aa8a360dde63604ebdce09545379105,
     type: 3}
 --- !u!1 &519420028

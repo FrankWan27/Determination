@@ -25,7 +25,8 @@ public class TrackManager : MonoBehaviour
 	public void AddTrack()
 	{
 		GameObject newTrack = Instantiate(trackPrefab, transform.position, Quaternion.identity);
-		tracks.Add(newTrack);
+		tracks.Add(newTrack); 
+        newTrack.transform.SetParent(transform);
 		numTracks++;
 		AdjustTracks();
 	}
@@ -62,4 +63,8 @@ public class TrackManager : MonoBehaviour
         return dest[trackPos];
     }
 
+    public GameObject GetTrack(int trackPos)
+    {
+        return tracks[trackPos];
+    }
 }

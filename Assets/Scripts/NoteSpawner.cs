@@ -21,6 +21,8 @@ public class NoteSpawner : MonoBehaviour
     public float beat = 0;
     public int noteIterator = 0;
     public int totalNotes = 0;
+    public float noteSpeed = 40;
+    public float offset = 0;
 
     bool songFinished = false;
 
@@ -32,6 +34,9 @@ public class NoteSpawner : MonoBehaviour
     {
         ReadSong();
         tm = GetComponentInParent<TrackManager>();
+        //calculate offset
+        offset = bpm/noteSpeed;
+
     }
 
     // Update is called once per frame
@@ -56,7 +61,7 @@ public class NoteSpawner : MonoBehaviour
         }
 
         //maybe use 1/bpm? 
-        return map[noteIterator, 0] <= beat;
+        return map[noteIterator, 0] <= beat + offset;
        
     }
 
@@ -75,7 +80,10 @@ public class NoteSpawner : MonoBehaviour
 
         Vector3 destination = new Vector3(tm.GetTrackPos(track), transform.position.y, transform.position.z);
 
-        GameObject newTrack = Instantiate(tapNotePrefab, destination, Quaternion.identity);
+        GameObject newNote = Instantiate(tapNotePrefab, destination, Quaternion.identity);
+
+        //Init(Transform target, float beat, float noteSpeed, NoteSpawner ns)
+        newNote.GetComponent<NoteContoller>().Init(tm.GetTrack(track).transform, map[noteIterator, 0], noteSpeed, this);
 
         noteIterator++;
 
