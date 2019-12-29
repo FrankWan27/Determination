@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class NoteSpawner : MonoBehaviour
 {
@@ -68,18 +69,40 @@ public class NoteSpawner : MonoBehaviour
 
     void ReadSong()
     {
-        totalNotes = 4;
-        map = new float[totalNotes, 3];
 
-        float[,] tempMap = { { 4, 1, 0}, { 8, 0, 0}, {12, 0, 0}, {12, 1, 0} };
-        map = tempMap;
+        string path = "Assets/Maps/crystalized.map";
+        StreamReader reader = new StreamReader(path);
+        
+        totalNotes = int.Parse(reader.ReadLine());
+
+        map = new float[totalNotes, 3];
+        int noteNum = 0;
+        while (noteNum < totalNotes)
+        {
+            if (reader.Peek() < 0)
+            {
+                Debug.Log("Incorrect Note Count");
+                return;
+            }
+            string[] param = reader.ReadLine().Split(' ');
+
+            for (int i = 0; i < 3; i++)
+                map[noteNum,i] = float.Parse(param[i]);
+
+            noteNum++;
+        }
+
+
+
+       // float[,] tempMap = { { 4, 1, 0}, { 8, 0, 0}, {12, 0, 0}, {12, 1, 0} };
+       // map = tempMap;
     }
 
     void SpawnNote(float trackNum, float noteType)
     {
         int track = (int)trackNum;
 
-        Vector3 destination = new Vector3(tm.GetTrackPos(track), transform.position.y, transform.position.z);
+        Vector3 destination = new Vector3(tm.GetTrackPos(track), transform.position.y, transform.position.z + 1);
 
         GameObject newNote = Instantiate(tapNotePrefab, destination, Quaternion.identity);
 

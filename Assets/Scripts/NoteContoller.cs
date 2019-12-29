@@ -5,9 +5,9 @@ using UnityEngine;
 public class NoteContoller : MonoBehaviour
 {
 
-    float noteSpeed = 0;
-    float beat = 0;
-    NoteSpawner ns;
+    public float noteSpeed = 0;
+    public float beat = 0;
+    public NoteSpawner ns;
 
     // Start is called before the first frame update
     void Start()
@@ -34,5 +34,9 @@ public class NoteContoller : MonoBehaviour
         }
     }
 
-    
+    private void OnMouseDown()
+    {
+        
+    }
+
 }

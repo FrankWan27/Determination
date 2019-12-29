@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1259918869078981947}
   - component: {fileID: 1259918869078981944}
-  - component: {fileID: 2848142894877488318}
+  - component: {fileID: 7996709878634647194}
+  - component: {fileID: 3280969188132594204}
   m_Layer: 0
   m_Name: TapNote
   m_TagString: Untagged
@@ -69,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: ab5ce40ff3191074eb3cf6f8097248c0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -81,7 +82,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2848142894877488318
+--- !u!61 &7996709878634647194
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259918869078981945}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.5, y: 0.5}
+    newSize: {x: 0.5, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5}
+  m_EdgeRadius: 0
+--- !u!114 &3280969188132594204
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,7 +117,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1259918869078981945}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dec9c8f7646eae64180de5494453d143, type: 3}
+  m_Script: {fileID: 11500000, guid: f6825a5ce5c917c40a568f68a8b1965d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteSpeed: 4
+  noteSpeed: 0
+  beat: 0
+  ns: {fileID: 0}
