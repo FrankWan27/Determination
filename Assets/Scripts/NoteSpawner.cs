@@ -19,33 +19,37 @@ public class NoteSpawner : MonoBehaviour
     */ 
 
 
-    public float bpm = 174;
-    public float beat = 0;
     public int noteIterator = 0;
     public int totalNotes = 0;
-    public float noteSpeed = 40;
-    public float offset = 0;
+    public float noteSpeed = 10;
+    public float offset = 4;
 
     bool songFinished = false;
 
     public GameObject tapNotePrefab;
+    public GameObject slideNotePrefab;
+    public GameObject swipeNotePrefab;
     TrackManager tm;
+    Conductor conductor;
+    GameManager gm;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        conductor = gm.GetComponent<Conductor>();
         ReadSong();
         tm = GetComponentInParent<TrackManager>();
         //calculate offset
-        offset = bpm/noteSpeed;
+        //offset = noteSpeed;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        beat += Time.deltaTime * bpm / 60;
-
         if(checkBeat() && !songFinished)
         {
             SpawnNote(map[noteIterator, 1], map[noteIterator, 2]);
@@ -63,14 +67,14 @@ public class NoteSpawner : MonoBehaviour
         }
 
         //maybe use 1/bpm? 
-        return map[noteIterator, 0] <= beat + offset;
+        return map[noteIterator, 0] <= conductor.songPositionInBeats + offset;
        
     }
 
     void ReadSong()
     {
 
-        string path = "Assets/Maps/crystalized.map";
+        string path = "Assets/Maps/" + gm.songName + ".map";
         StreamReader reader = new StreamReader(path);
         
         totalNotes = int.Parse(reader.ReadLine());
@@ -104,10 +108,41 @@ public class NoteSpawner : MonoBehaviour
 
         Vector3 destination = new Vector3(tm.GetTrackPos(track), transform.position.y, transform.position.z + 1);
 
-        GameObject newNote = Instantiate(tapNotePrefab, destination, Quaternion.identity);
+        GameObject newNote;
+
+        switch(map[noteIterator, 2])
+        {
+            case 0: //tapNote
+                newNote = Instantiate(tapNotePrefab, destination, Quaternion.identity);
+                break;
+            case 1: //slideNote
+                newNote = Instantiate(slideNotePrefab, destination, Quaternion.identity);
+                break;
+            case 2: //swipeRightNote
+                newNote = Instantiate(swipeNotePrefab, destination, Quaternion.identity);
+                newNote.GetComponent<SwipeNoteController>().direction = 1;
+                break;
+            case -2: //swipeLeftNote
+                newNote = Instantiate(swipeNotePrefab, destination, Quaternion.Euler(180, 0, 0));
+                newNote.GetComponent<SwipeNoteController>().direction = -1;
+                break;
+            default:
+                if (noteIterator >= 3) //holdNoteStart
+                    newNote = Instantiate(tapNotePrefab, destination, Quaternion.identity);
+                else if (noteIterator <= -3) //holdNoteEnd
+                    newNote = Instantiate(tapNotePrefab, destination, Quaternion.identity);
+                else
+                {
+                    Debug.Log("Notetype Error");
+                    return;
+                }
+
+                break;
+        }
+
 
         //Init(Transform target, float beat, float noteSpeed, NoteSpawner ns)
-        newNote.GetComponent<NoteContoller>().Init(tm.GetTrack(track).transform, map[noteIterator, 0], noteSpeed, this);
+        newNote.GetComponent<NoteContoller>().Init(tm.GetTrack(track).transform, map[noteIterator, 0], noteSpeed, this, conductor);
 
         noteIterator++;
 

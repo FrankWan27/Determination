@@ -6,37 +6,38 @@ public class NoteContoller : MonoBehaviour
 {
 
     public float noteSpeed = 0;
-    public float beat = 0;
+    public float targetBeat = 0;
     public NoteSpawner ns;
+    public Conductor conductor;
+    public float accuracy;
 
-    // Start is called before the first frame update
-    void Start()
+    protected ScoreManager sm;
+
+    public void Start()
     {
-        
+        sm = GameObject.Find("GameManager").GetComponent<ScoreManager>();
     }
 
-    public void Init(Transform target, float beat, float noteSpeed, NoteSpawner ns)
+    public void Init(Transform target, float beat, float noteSpeed, NoteSpawner ns, Conductor conductor)
     {
         transform.SetParent(target);
-        this.beat = beat;
+        targetBeat = beat;
         this.noteSpeed = noteSpeed;
         this.ns = ns;
+        this.conductor = conductor;
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
-        transform.Translate(Vector3.down * noteSpeed * Time.deltaTime / 4);
+        transform.Translate(Vector3.down * noteSpeed * Time.deltaTime);
         
-        if(ns.beat > beat)
+        if(conductor.songPositionInBeats > targetBeat + 1f)
         {
+            sm.TapNote(20, transform);
             GameObject.Destroy(gameObject);
         }
-    }
 
-    private void OnMouseDown()
-    {
-        
     }
 
 }

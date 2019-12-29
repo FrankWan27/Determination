@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
 	public int numTracks;
 	TrackManager tm;
+    public string songName = "crystalized";
 
 	void Awake()
 	{
@@ -15,6 +16,10 @@ public class GameManager : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+
+    }
 
     public void changeNumTracks(int num)
 	{

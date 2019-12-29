@@ -11,6 +11,7 @@ public static class Tools
     public static float[] dest3 = { -2, 0, 2 };
     public static float[] dest4 = { -2.4f, -0.8f, 0.8f, 2.4f };
     public static float[] dest5 = { -2.8f, -1.4f, 0, 1.4f, 2.8f };
+    public static float[] dest6 = { -3f, -1.8f, -0.6f, 0.6f, 1.8f, 3f };
 
     public static float[] SetDest(int num)
     {
@@ -26,6 +27,8 @@ public static class Tools
                 return dest4;
             case 5:
                 return dest5;
+            case 6:
+                return dest6;
             default:
                 return dest1;
         }

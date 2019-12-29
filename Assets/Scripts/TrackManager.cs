@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class TrackManager : MonoBehaviour
 {
-	List<GameObject> tracks;
+	GameObject[] tracks;
 	public GameObject trackPrefab;
 
 	public int numTracks;
+    public int maxTracks = 6;
 
     float[] dest;
 
@@ -19,22 +20,23 @@ public class TrackManager : MonoBehaviour
 
 	void Awake()
 	{
-		tracks = new List<GameObject>();
-	}
+		tracks = new GameObject[maxTracks];
+        for(int i = 0; i < maxTracks; i++)
+        {
+            tracks[i] = Instantiate(trackPrefab, transform.position + Vector3.left * 100, Quaternion.identity);
+            tracks[i].transform.SetParent(transform);
+        }
+    }
 
 	public void AddTrack()
 	{
-		GameObject newTrack = Instantiate(trackPrefab, transform.position, Quaternion.identity);
-		tracks.Add(newTrack); 
-        newTrack.transform.SetParent(transform);
-		numTracks++;
+        numTracks++;
 		AdjustTracks();
 	}
 
 	public void RemoveTrack()
 	{
-        GameObject.Destroy(tracks[numTracks - 1]);
-        tracks.RemoveAt(numTracks - 1);
+        tracks[numTracks - 1].transform.position = transform.position + Vector3.left * 100; //hide
 		numTracks--;
 		AdjustTracks();
 	}
@@ -60,7 +62,7 @@ public class TrackManager : MonoBehaviour
 
     public float GetTrackPos(int trackPos)
     {
-        return dest[trackPos];
+        return GetTrack(trackPos).transform.position.x;
     }
 
     public GameObject GetTrack(int trackPos)
