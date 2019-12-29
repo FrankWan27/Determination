@@ -10,14 +10,15 @@ public class NoteSpawner : MonoBehaviour
     Ex:    1       0        0
 
     NoteTypes: 0 = Tap
-               -1 = Swipe Left
-               1 = Swipe Right
-               2... = Hold
-               -2... = Hold Release
+               1 = Slide
+               -2 = Swipe Left
+               2 = Swipe Right
+               3... = Hold
+               -3... = Hold Release
     */ 
 
 
-    public float bpm = 120;
+    public float bpm = 174;
     public float beat = 0;
     public int noteIterator = 0;
     public int totalNotes = 0;

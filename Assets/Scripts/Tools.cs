@@ -10,7 +10,7 @@ public static class Tools
     public static float[] dest2 = { -1.5f, 1.5f };
     public static float[] dest3 = { -2, 0, 2 };
     public static float[] dest4 = { -2.4f, -0.8f, 0.8f, 2.4f };
-    public static float[] dest5 = { -3, -1.5f, 0, 1.5f, 3 };
+    public static float[] dest5 = { -2.8f, -1.4f, 0, 1.4f, 2.8f };
 
     public static float[] SetDest(int num)
     {
