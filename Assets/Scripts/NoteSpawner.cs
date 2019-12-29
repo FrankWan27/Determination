@@ -74,29 +74,23 @@ public class NoteSpawner : MonoBehaviour
     void ReadSong()
     {
 
-        string path = "Assets/Maps/" + gm.songName + ".map";
-        StreamReader reader = new StreamReader(path);
-        
-        totalNotes = int.Parse(reader.ReadLine());
+        string path = "Maps/" + gm.songName;
+
+        TextAsset mapData = Resources.Load(path) as TextAsset;
+        Debug.Log(mapData);
+        var arrayString = mapData.text.Split('\n');
+
+        totalNotes = arrayString.Length;
 
         map = new float[totalNotes, 3];
-        int noteNum = 0;
-        while (noteNum < totalNotes)
+
+        for (int line = 0; line < totalNotes; line++)
         {
-            if (reader.Peek() < 0)
-            {
-                Debug.Log("Incorrect Note Count");
-                return;
-            }
-            string[] param = reader.ReadLine().Split(' ');
-
+            string[] param = arrayString[line].Split(' ');
+            
             for (int i = 0; i < 3; i++)
-                map[noteNum,i] = float.Parse(param[i]);
-
-            noteNum++;
+                map[line, i] = float.Parse(param[i]);
         }
-
-
 
        // float[,] tempMap = { { 4, 1, 0}, { 8, 0, 0}, {12, 0, 0}, {12, 1, 0} };
        // map = tempMap;
