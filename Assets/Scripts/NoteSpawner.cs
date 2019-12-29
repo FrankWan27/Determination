@@ -29,10 +29,14 @@ public class NoteSpawner : MonoBehaviour
     public GameObject tapNotePrefab;
     public GameObject slideNotePrefab;
     public GameObject swipeNotePrefab;
+    public GameObject holdNotePrefab;
+    public GameObject holdMidPrefab;
+
     TrackManager tm;
     Conductor conductor;
     GameManager gm;
 
+    List<int> holdNotes;
 
 
     // Start is called before the first frame update
@@ -44,6 +48,7 @@ public class NoteSpawner : MonoBehaviour
         tm = GetComponentInParent<TrackManager>();
         //calculate offset
         //offset = noteSpeed;
+        holdNotes = new List<int>();
 
     }
 
@@ -55,6 +60,11 @@ public class NoteSpawner : MonoBehaviour
             SpawnNote(map[noteIterator, 1], map[noteIterator, 2]);
         }
 
+        foreach(int holdNote in holdNotes)
+        {
+            GameObject newNote = Instantiate(holdMidPrefab, new Vector3(tm.GetTrackPos(holdNote), transform.position.y, transform.position.z + 1), Quaternion.identity);
+            newNote.GetComponent<HoldNoteController>().section = 0;
+        }
 
     }
 
@@ -121,10 +131,20 @@ public class NoteSpawner : MonoBehaviour
                 newNote.GetComponent<SwipeNoteController>().direction = -1;
                 break;
             default:
-                if (noteIterator >= 3) //holdNoteStart
-                    newNote = Instantiate(tapNotePrefab, destination, Quaternion.identity);
-                else if (noteIterator <= -3) //holdNoteEnd
-                    newNote = Instantiate(tapNotePrefab, destination, Quaternion.identity);
+                if (map[noteIterator, 2] >= 3) //holdNoteStart
+                {
+                    newNote = Instantiate(holdNotePrefab, destination, Quaternion.identity);
+                    newNote.GetComponent<HoldNoteController>().section = 1;
+                    holdNotes.Add(track);
+                }
+
+                else if (map[noteIterator, 2] <= -3) //holdNoteEnd
+                {
+                    newNote = Instantiate(holdNotePrefab, destination, Quaternion.Euler(180, 0, 0));
+                    newNote.GetComponent<HoldNoteController>().section = -1;
+                    holdNotes.Remove(track);
+                }
+
                 else
                 {
                     Debug.Log("Notetype Error");

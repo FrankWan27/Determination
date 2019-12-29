@@ -27,22 +27,19 @@ public class ScoreManager : MonoBehaviour
     {
         if (accuracy < -0.5f || accuracy > 0.5f)
         {
-            Debug.Log("Miss");
             Instantiate(missPrefab, new Vector3(target.position.x, -6, 0), Quaternion.identity);
             combo = 0;
 
         }
-        else if (accuracy < -0.2f)
+        else if (accuracy < -0.05f)
         {
-            Debug.Log("Late");
             Instantiate(latePrefab, target.position, Quaternion.identity);
             combo++;
             score += combo * 150;
 
         }
-        else if (accuracy > 0.2f)
+        else if (accuracy > 0.05f)
         {
-            Debug.Log("Early");
             Instantiate(earlyPrefab, target.position, Quaternion.identity);
             combo++;
             score += combo * 150;
@@ -50,7 +47,6 @@ public class ScoreManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Perfect");
             Instantiate(perfectPrefab, target.position, Quaternion.identity);
             combo++;
             score += combo * 300;

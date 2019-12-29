@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwipeNoteController : NoteContoller
+public class HoldNoteController : NoteContoller
 {
-    float startPos = -50;
-    public float direction = 1; //1 = right, -1 = left
+  
+    public int section = 1; //1 = start, 0 = mid, -1 = end
 
     TrackManager tm;
 
@@ -16,17 +16,7 @@ public class SwipeNoteController : NoteContoller
     }
     private new void Update()
     {
-        transform.Translate(Vector3.down * noteSpeed * Time.deltaTime);
-
-        if (conductor.songPositionInBeats > targetBeat)
-        {
-            sm.TapNote(-0.2f, transform);
-            if (direction > 0)
-                tm.AddTrack();
-            else
-                tm.RemoveTrack();
-            GameObject.Destroy(gameObject);
-        }
+        base.Update();
 
         //probably need to change to account for closeby notes
         if (Input.touchCount > 0)
@@ -44,20 +34,25 @@ public class SwipeNoteController : NoteContoller
                 {
                     //When a touch has first been detected, change the message and record the starting position
                     case TouchPhase.Began:
-                        wp = Camera.main.ScreenToWorldPoint(touch.position);
-                        touchPos = new Vector2(wp.x, wp.y);
-                        if (GetComponent<Collider2D>() == Physics2D.OverlapPoint(touchPos))
+                        if (section == 1)
                         {
-                            startPos = touchPos.x;
+                            wp = Camera.main.ScreenToWorldPoint(touch.position);
+                            touchPos = new Vector2(wp.x, wp.y);
+                            if (GetComponent<Collider2D>() == Physics2D.OverlapPoint(touchPos))
+                            {
+                                OnTap();
+                            }
                         }
                         break;
-
-                    case TouchPhase.Ended:
-                        wp = Camera.main.ScreenToWorldPoint(touch.position);
-                        touchPos = new Vector2(wp.x, wp.y);
-                        if(direction * (touchPos.x - startPos) > 0)
+                    default:
+                        if (section == 0 || section == -1)
                         {
-                            OnTap();
+                            wp = Camera.main.ScreenToWorldPoint(touch.position);
+                            touchPos = new Vector2(wp.x, wp.y);
+                            if (GetComponent<Collider2D>() == Physics2D.OverlapPoint(touchPos))
+                            {
+                                OnTap();
+                            }
                         }
                         break;
                 }
@@ -79,10 +74,6 @@ public class SwipeNoteController : NoteContoller
             sm.TapNote(accuracy, transform);
 
             accuracy = targetBeat - conductor.songPositionInBeats;
-            if (direction > 0)
-                tm.AddTrack();
-            else
-                tm.RemoveTrack();
 
             GameObject.Destroy(gameObject);
 

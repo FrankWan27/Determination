@@ -302,6 +302,10 @@ MonoBehaviour:
     type: 3}
   swipeNotePrefab: {fileID: 8326764051079945454, guid: f222e6a18f2f8ba488ed4ce1006af7c9,
     type: 3}
+  holdNotePrefab: {fileID: 2225046647215407719, guid: 890d624058476544f91c2e00b5bbb1d5,
+    type: 3}
+  holdMidPrefab: {fileID: 5039690538482106432, guid: e8a155fd14fe78d45b3280385981944b,
+    type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

@@ -98,8 +98,7 @@ MonoBehaviour:
   targetBeat: 0
   ns: {fileID: 0}
   conductor: {fileID: 0}
-  startPos: 0
-  endPos: 0
+  accuracy: 0
 --- !u!58 &2726744939601245064
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -115,4 +114,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.5

@@ -30,7 +30,8 @@ public class NoteContoller : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        transform.Translate(Vector3.down * noteSpeed * Time.deltaTime);
+        //move forward so lower notes have higher tap priority
+        transform.Translate(Vector3.down * noteSpeed * Time.deltaTime + Vector3.forward * Time.deltaTime * 0.01f);
         
         if(conductor.songPositionInBeats > targetBeat + 1f)
         {
