@@ -294,8 +294,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noteIterator: 0
   totalNotes: 0
-  noteSpeed: 10
-  offset: 4
+  noteSpeed: 6
+  offset: 6
   tapNotePrefab: {fileID: 1259918869078981945, guid: 9aa8a360dde63604ebdce09545379105,
     type: 3}
   slideNotePrefab: {fileID: 5657254735718227382, guid: 4636d5e5a6969e14b8fe8f37cb96fd68,

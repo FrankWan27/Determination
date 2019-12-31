@@ -7,6 +7,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1125008934041648966, guid: 890d624058476544f91c2e00b5bbb1d5,
+        type: 3}
+      propertyPath: m_Name
+      value: HoldMid Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1125008934041648967, guid: 890d624058476544f91c2e00b5bbb1d5,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ab597bfa6fb901c46b986cf9a7217dc4,
+        type: 3}
     - target: {fileID: 2225046647215407700, guid: 890d624058476544f91c2e00b5bbb1d5,
         type: 3}
       propertyPath: m_Sprite

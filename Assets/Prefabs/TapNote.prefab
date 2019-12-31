@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1259918869078981944}
   - component: {fileID: 3280969188132594204}
   - component: {fileID: 2726744939601245064}
+  - component: {fileID: 6300839920620008463}
   m_Layer: 0
   m_Name: TapNote
   m_TagString: Untagged
@@ -115,3 +116,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &6300839920620008463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259918869078981945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 345d8298d0507b0479eefa32ad1cf03d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pulseFactor: 1.1

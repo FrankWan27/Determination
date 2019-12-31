@@ -6,7 +6,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2225046647215407719}
+  m_GameObject: {fileID: 1125008934041648966}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ea2ee82d2c53e041b413cb90074e785, type: 3}
@@ -17,7 +17,7 @@ MonoBehaviour:
   ns: {fileID: 0}
   conductor: {fileID: 0}
   accuracy: 0
-  direction: 1
+  section: 1
 --- !u!1001 &2225046647215407743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34,7 +34,7 @@ PrefabInstance:
     - target: {fileID: 1259918869078981945, guid: 9aa8a360dde63604ebdce09545379105,
         type: 3}
       propertyPath: m_Name
-      value: HoldNote
+      value: HoldNote Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1259918869078981947, guid: 9aa8a360dde63604ebdce09545379105,
         type: 3}
@@ -93,8 +93,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3280969188132594204, guid: 9aa8a360dde63604ebdce09545379105, type: 3}
+    - {fileID: 6300839920620008463, guid: 9aa8a360dde63604ebdce09545379105, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9aa8a360dde63604ebdce09545379105, type: 3}
---- !u!1 &2225046647215407719 stripped
+--- !u!1 &1125008934041648966 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1259918869078981945, guid: 9aa8a360dde63604ebdce09545379105,
     type: 3}
