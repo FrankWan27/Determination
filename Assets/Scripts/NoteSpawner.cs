@@ -90,13 +90,20 @@ public class NoteSpawner : MonoBehaviour
         Debug.Log(mapData);
         var arrayString = mapData.text.Split('\n');
 
-        totalNotes = arrayString.Length;
+        //First line = BPM, Second line = First note offset
+        
+        totalNotes = arrayString.Length - 2;
+
+        float bpm = float.Parse(arrayString[0]);
+        float off = float.Parse(arrayString[1]);
+
+        conductor.UpdateSong(bpm, off);
 
         map = new float[totalNotes, 3];
 
         for (int line = 0; line < totalNotes; line++)
         {
-            string[] param = arrayString[line].Split(' ');
+            string[] param = arrayString[line + 2].Split(' ');
             
             for (int i = 0; i < 3; i++)
                 map[line, i] = float.Parse(param[i]);

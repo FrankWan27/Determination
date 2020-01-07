@@ -31,14 +31,24 @@ public class Conductor : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = song;
 
-        //Calculate the number of seconds in each beat
-        secPerBeat = 60f / songBpm;
+        UpdateSong(songBpm, firstBeatOffset);
 
         //Record the time when the music starts
         dspSongTime = (float)AudioSettings.dspTime;
 
         //Start the music
         audioSource.Play();
+    }
+
+    public void UpdateSong(float bpm, float offset)
+    {
+        songBpm = bpm;
+        firstBeatOffset = offset;
+        
+        //Calculate the number of seconds in each beat
+        secPerBeat = 60f / songBpm;
+
+
     }
 
     // Update is called once per frame

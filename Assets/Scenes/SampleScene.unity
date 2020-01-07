@@ -302,9 +302,9 @@ MonoBehaviour:
     type: 3}
   swipeNotePrefab: {fileID: 8326764051079945454, guid: f222e6a18f2f8ba488ed4ce1006af7c9,
     type: 3}
-  holdNotePrefab: {fileID: 2225046647215407719, guid: 890d624058476544f91c2e00b5bbb1d5,
+  holdNotePrefab: {fileID: 1125008934041648966, guid: 890d624058476544f91c2e00b5bbb1d5,
     type: 3}
-  holdMidPrefab: {fileID: 5039690538482106432, guid: e8a155fd14fe78d45b3280385981944b,
+  holdMidPrefab: {fileID: 6092440516368809313, guid: e8a155fd14fe78d45b3280385981944b,
     type: 3}
 --- !u!1 &519420028
 GameObject:
@@ -784,7 +784,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numTracks: 0
-  songName: temp
+  songName: determination
 --- !u!82 &1208285428
 AudioSource:
   m_ObjectHideFlags: 0
@@ -893,14 +893,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 081cd627fefa7d24f96bfb22fc02b53e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songBpm: 174
-  firstBeatOffset: 3.9
+  songBpm: 140
+  firstBeatOffset: 3
   secPerBeat: 0
   songPosition: -10
   songPositionInBeats: -10
   dspSongTime: 0
   audioSource: {fileID: 0}
-  song: {fileID: 8300000, guid: db0f880ef8b3ffe4a9c749f4259a9ee9, type: 3}
+  song: {fileID: 8300000, guid: 0a269e67c3bc63d40aaa359242159542, type: 3}
 --- !u!114 &1208285430
 MonoBehaviour:
   m_ObjectHideFlags: 0
